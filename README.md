@@ -7,8 +7,8 @@ npm run start
 # tsx
 /src/components/[componentName]/[componentName].tsx
 
-# css
-TODO
+# css|scss|module.scss
+/src/components/[componentName]/[componentName].(css|(module.)?scss)
 
 # types
 /src/@types/[componentName].d.ts
