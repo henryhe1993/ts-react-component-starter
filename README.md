@@ -10,5 +10,8 @@ npm run start
 # css
 TODO
 
+# types
+/src/@types/[componentName].d.ts
+
 # publish
 npm run publish

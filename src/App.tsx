@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-d
 
 // import Input from './components/input/input';
 const Input = React.lazy(() => import('./page/input/input-page'));
+const Select = React.lazy(() => import('./page/select/select-page'));
 
 
 function App() {
@@ -12,6 +13,7 @@ function App() {
       <Router>
         <Switch>
           <Route path="/input" component={Input} />
+          <Route path="/select" component={Select} />
           <Redirect to="/input"/>
         </Switch>
       </Router>
