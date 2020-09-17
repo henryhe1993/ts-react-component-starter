@@ -12,7 +12,7 @@
 /build
 
 #publish
-/publish
+# /publish
 
 # misc
 .DS_Store

@@ -1,0 +1,17 @@
+{
+  "name": "henryhe-ts-react-libs",
+  "version": "0.0.6",
+  "description": "UI library",
+  "main": "build/index.js",
+  "types": "build/index.d.ts",
+  "publishConfig": {
+    "registry": "https://registry.npmjs.org/"
+  },
+  "peerDependencies": {
+    "react": "^16.8.1"
+  },
+  "author": {
+    "name": "henryhe1993",
+    "email": "henryhe1993@gmail.com"
+  }
+}
