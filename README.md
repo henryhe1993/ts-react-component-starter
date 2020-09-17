@@ -4,7 +4,11 @@ modified from CRA
 # Development
 npm run start
 
-# build
-npm run build
+# tsx
+/src/components/[componentName]/[componentName].tsx
 
-build components under /src/components to build/
+# css
+TODO
+
+# publish
+npm run publish
