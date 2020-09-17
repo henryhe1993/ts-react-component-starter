@@ -100,7 +100,7 @@ module.exports = function(webpackEnv) {
     entry: entriesObj,
     output: {
       path: paths.appBuild,
-      filename: '[name].js',
+      filename: '[name]/[name].js',
       libraryTarget: 'commonjs2'
     },
     optimization: {

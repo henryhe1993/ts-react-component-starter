@@ -196,8 +196,7 @@ function build(previousFileSizes) {
       }
 
 
-      const entries = glob.sync(paths.appTypes + '/*');
-      console.log(entries)
+      // const entries = glob.sync(paths.appTypes + '/*');
       copyFile(paths.appTypes, paths.appBuild);
       copyPublishFolder();
       return resolve({

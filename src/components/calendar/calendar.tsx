@@ -12,27 +12,40 @@ function uuidv4() {
 		return v.toString(16);
 	});
 }
+
+interface Date {
+	value: number;
+	key: string;
+	highlight: 0;
+	left: boolean;
+	right: boolean;
+	disabled: boolean;
+}
 // highlight
 // 0: 没有背景
 // 1: 开始日期
 // 2: 结束日期
 // 3: 中间日期
 // 4: 开始结束同一天
-function getPaddingDates(year: number, month: number, maxDate: number) {
+function getPaddingDates(year: number, month: number, maxDate: number): Date[] {
 	const beginDate = new Date(year, month, 1);
 	const beginTS = beginDate.getTime();
 	const endDate = new Date(year, month + 1, 0);
 
 	const beginDay = beginDate.getDay();
 	const totalDates = endDate.getDate();
-	const dates = [];
+	const dates: Date[] = [];
 	// 开始
 	// 日
 	if (beginDay === 0) {
 		for (let j = 0; j < 6; j++) {
 			dates.push({
 				value: null,
+				key: uuidv4(),
 				highlight: 0,
+				left: null,
+				right: null,
+				disabled: null,
 			})
 		}
 	}
@@ -41,7 +54,11 @@ function getPaddingDates(year: number, month: number, maxDate: number) {
 		for (let j = 1; j < beginDay; j++) {
 			dates.push({
 				value: null,
+				key: uuidv4(),
 				highlight: 0,
+				left: null,
+				right: null,
+				disabled: null,
 			})
 		}
 	}
@@ -53,6 +70,7 @@ function getPaddingDates(year: number, month: number, maxDate: number) {
 			if (dates.length % 7 === 6) {
 				dates.push({
 					value: i,
+					key: null,
 					highlight: 0,
 					left: true,
 					right: true,
@@ -62,8 +80,10 @@ function getPaddingDates(year: number, month: number, maxDate: number) {
 			else {
 				dates.push({
 					value: i,
+					key: null,
 					highlight: 0,
 					left: true,
+					right: null,
 					disabled: datetime > maxDate
 				})
 			}
@@ -72,6 +92,7 @@ function getPaddingDates(year: number, month: number, maxDate: number) {
 			if (dates.length % 7 === 0) {
 				dates.push({
 					value: i,
+					key: null,
 					highlight: 0,
 					left: true,
 					right: true,
@@ -81,7 +102,9 @@ function getPaddingDates(year: number, month: number, maxDate: number) {
 			else {
 				dates.push({
 					value: i,
+					key: null,
 					highlight: 0,
+					left: null,
 					right: true,
 					disabled: datetime > maxDate
 				})	
@@ -92,7 +115,9 @@ function getPaddingDates(year: number, month: number, maxDate: number) {
 			if (dates.length % 7 === 6) {
 				dates.push({
 					value: i,
+					key: null,
 					highlight: 0,
+					left: null,
 					right: true,
 					disabled: datetime > maxDate
 				})	
@@ -100,15 +125,20 @@ function getPaddingDates(year: number, month: number, maxDate: number) {
 			else if (dates.length % 7 === 0) {
 				dates.push({
 					value: i,
+					key: null,
 					highlight: 0,
 					left: true,
+					right: null,
 					disabled: datetime > maxDate
 				})	
 			}
 			else {
 				dates.push({
 					value: i,
+					key: null,
 					highlight: 0,
+					left: null,
+					right: null,
 					disabled: datetime > maxDate
 				})
 			}
@@ -122,7 +152,11 @@ function getPaddingDates(year: number, month: number, maxDate: number) {
 		for (let i = 0; i < paddingItems; i++) {
 			dates.push({
 				value: null,
+				key: uuidv4(),
 				highlight: 0,
+				left: null,
+				right: null,
+				disabled: null
 			})
 		}
 	}
@@ -219,7 +253,7 @@ class Calendar extends React.Component<Props> {
 
 					<div className={styles["days-container"]}>
 						{this.days.map(day => (
-							<div>{day}</div>
+							<div key={day}>{day}</div>
 						))}
 					</div>
 					
@@ -255,12 +289,13 @@ class Calendar extends React.Component<Props> {
 										
 										if (date.disabled)
 											return (
-												<div className={styles["disabled"]}>
+												<div key={date.value} className={styles["disabled"]}>
 													{date.value}
 												</div>
 											)
+
 										return (
-											<div key={item.value}
+											<div key={date.value || date.key}
 												data-year={item.year}
 												data-month={item.month}
 												data-date={date.value}
@@ -514,14 +549,12 @@ class Calendar extends React.Component<Props> {
 			const newDates = getPaddingDates(newYear, newMonth, this.props.maxDate);
 			const addedHeight = this.computeBlockHeight(newDates);
 
-			if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-				// console.log('before', e.target.scrollTop)
-				e.target.scrollTop = scrollTop + addedHeight;
-			}
+			// IOS fix
+			// if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+			// 	console.log('before', e.target.scrollTop)
+			// 	e.target.scrollTop = scrollTop + addedHeight;
+			// }
 				
-
-			
-			
 			this.state.showItems.unshift({
 				id: uuidv4(),
 				year: newYear,
