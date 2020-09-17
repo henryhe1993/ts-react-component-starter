@@ -3,7 +3,7 @@ import styles from './App.module.scss';
 import { BrowserRouter as Router, Route, Switch, Redirect } from 'react-router-dom';
 
 // import Input from './components/input/input';
-const Input = React.lazy(() => import('./components/input/input'));
+const Input = React.lazy(() => import('./page/input/input-page'));
 
 
 function App() {

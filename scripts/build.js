@@ -26,6 +26,7 @@ const formatWebpackMessages = require('react-dev-utils/formatWebpackMessages');
 const printHostingInstructions = require('react-dev-utils/printHostingInstructions');
 const FileSizeReporter = require('react-dev-utils/FileSizeReporter');
 const printBuildError = require('react-dev-utils/printBuildError');
+const glob = require("glob")
 
 const measureFileSizesBeforeBuild =
   FileSizeReporter.measureFileSizesBeforeBuild;
@@ -194,6 +195,11 @@ function build(previousFileSizes) {
         return reject(new Error(messages.warnings.join('\n\n')));
       }
 
+
+      const entries = glob.sync(paths.appTypes + '/*');
+      console.log(entries)
+      copyFile(paths.appTypes, paths.appBuild);
+      copyPublishFolder();
       return resolve({
         stats,
         previousFileSizes,
@@ -203,9 +209,11 @@ function build(previousFileSizes) {
   });
 }
 
-function copyPublicFolder() {
-  fs.copySync(paths.appPublic, paths.appBuild, {
-    dereference: true,
-    filter: file => file !== paths.appHtml,
-  });
+function copyFile(src, dest) {
+  fs.copySync(src, dest);
+}
+
+
+function copyPublishFolder() {
+  fs.copySync(paths.appPublish, paths.appBuild);
 }

@@ -1,12 +1,17 @@
 import React from 'react';
+import { Props } from '../../@types/input';
 
-export default function() {
 
+export default function(props: Props) {
+  const [value, setValue] = React.useState(props.initialValue);
 
   return (
     <div>
-      HERE IS A NEW COMMIT FOR INPUT.
-      <p>HE TIANLUN</p>
+      <input className="henry-input"
+        name={props.name} 
+        value={value}
+        onChange={e => setValue(e.target.value)}
+      />
     </div>
   )
 }
