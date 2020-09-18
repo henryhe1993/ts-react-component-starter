@@ -86,8 +86,8 @@ module.exports = function(webpackEnv) {
     return loaders;
   };
 
-  const entries = glob.sync(paths.appComponents + '/*/*.tsx');
   const entriesObj = {};
+  const entries = glob.sync(paths.appComponents + '/*/*.tsx');
   for (let i = 0; i < entries.length; i++) {
     entriesObj[path.basename(entries[i], '.tsx')] = entries[i];
   }

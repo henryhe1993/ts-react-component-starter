@@ -58,6 +58,7 @@ module.exports = {
   appIndexJs: resolveModule(resolveApp, 'src/index'),
   appPackageJson: resolveApp('package.json'),
   appComponents: resolveApp('src/components'),
+  appComponentsIndex: resolveApp('src/components/index.ts'),
   appTypes: resolveApp('src/@types'),
   appPublish: resolveApp('publish'),
   appSrc: resolveApp('src'),

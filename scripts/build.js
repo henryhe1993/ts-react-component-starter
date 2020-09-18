@@ -194,6 +194,7 @@ function build(previousFileSizes) {
         return reject(new Error(messages.warnings.join('\n\n')));
       }
 
+      copyFile(paths.appComponents + '/index.js', paths.appBuild + '/index.js');
       copyFile(paths.appTypes, paths.appBuild);
       copyPublishFolder();
       return resolve({
