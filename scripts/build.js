@@ -196,6 +196,11 @@ function build(previousFileSizes) {
 
       copyFile(paths.appComponents + '/index.js', paths.appBuild + '/index.js');
       copyFile(paths.appTypes, paths.appBuild);
+      
+      const indexJS = fs.readFileSync(paths.appBuild + '/index.js', 'utf8');
+      fs.appendFileSync(paths.appBuild + '/index.d.ts', '\r\n\r\n' + indexJS);
+      
+
       copyPublishFolder();
       return resolve({
         stats,
