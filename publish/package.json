@@ -1,6 +1,6 @@
 {
   "name": "henryhe-ts-react-libs",
-  "version": "0.0.7",
+  "version": "0.0.8",
   "description": "UI library",
   "main": "build/index.js",
   "types": "build/index.d.ts",

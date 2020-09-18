@@ -7,6 +7,7 @@ const Input = React.lazy(() => import('./page/input/input-page'));
 const Select = React.lazy(() => import('./page/select/select-page'));
 const Calendar = React.lazy(() => import('./page/calendar/calendar-page'));
 const Datepicker = React.lazy(() => import('./page/datepicker/datepicker-page'));
+const TreeSelect = React.lazy(() => import('./page/tree-select/tree-select-page'));
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
           <Route path="/select" component={Select} />
           <Route path="/calendar" component={Calendar} />
           <Route path="/datepicker" component={Datepicker} />
+          <Route path="/tree-select" component={TreeSelect} />
           <Redirect to="/input"/>
         </Switch>
       </Router>

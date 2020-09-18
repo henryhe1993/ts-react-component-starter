@@ -1,0 +1,187 @@
+* { box-sizing: border-box; }
+.show-up {
+  animation-iteration-count: 1;
+  animation-name: show-up;
+  animation-duration: 0.1s;
+  animation-timing-function: linear;
+}
+.text-overflow {
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
+}
+
+$content-height: 500px;
+$header-height: 50px;
+$footer-height: 56px;
+.modal {
+  @extend .show-up;
+  display: block; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 100000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+ 
+  .tree-container {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    width: 100%;
+    height: $content-height;
+    background-color: #fff;
+
+    .tree-header {
+      @extend .text-overflow;
+      height: $header-height;
+      padding: 10px 16px 0 16px;
+      line-height: 1.5;
+      font-size: 18px;
+      color: #3f3f3f;
+      text-align: center;
+      position: relative;
+
+      &::after {
+        content: '';
+        display: block;
+        height: 1px;
+        width: calc(100% - 32px);
+        transform: scaleY(0.5);
+        background-color: #eaeaea;
+        position: absolute;
+        bottom: 0;
+        left: 16px;
+      }
+      
+      .title {
+        @extend .text-overflow;
+        width: 70%;
+        margin: auto;
+      }
+
+      .back-btn {
+        position: absolute;
+        left: 0;
+        top:0;
+        width: 44px;
+        height: 44px;
+      }
+    }
+
+    .tree-node-container {
+      // padding: 0 16px;
+      height: calc(#{$content-height} - #{$header-height} - #{$footer-height});
+      overflow: scroll;
+    
+      .tree-node {
+        height: 50px;
+        display: flex;
+        align-items: center;
+        position: relative;
+
+        .tree-node-check-container {
+          height: 50px;
+          width: 72px;
+          display: flex;
+          align-items: center;
+          justify-content: flex-end;
+          flex-shrink: 0;
+
+          .tree-node-check {
+            height: 20px;
+            width: 20px;
+            border-radius: 50%;
+            border: solid 1px rgba(160, 160, 160, 0.4);
+            flex-shrink: 0;
+            margin-right: 20px;
+    
+            &.check {
+              border: solid 7px #9273ff;
+            }
+          }
+        }
+        
+
+        .tree-node-text {
+          @extend .text-overflow;
+          position: relative;
+          font-size: 16px;
+          color: #3f3f3f;
+          width: 100%;
+          height: 100%;
+          display: flex;
+          align-items: center;
+
+          &[data-next="true"]::after {
+            content: '';
+            position: absolute;
+            display: block;
+            right: 32px;
+            top: 50%;
+            transform: translateY(-50%);
+            width: 0;
+            height: 0;
+            border-left: solid 6px #999;
+            border-top: solid 6px transparent;
+            border-bottom: solid 6px transparent;
+          }
+        }
+
+        &::after {
+          content: '';
+          display: block;
+          height: 1px;
+          width: calc(100% - 32px);
+          transform: scaleY(0.5);
+          background-color: #eaeaea;
+          position: absolute;
+          bottom: 0;
+          left: 16px;
+        }
+      }
+    }
+    
+    .tree-footer {
+      height: $footer-height;
+      box-shadow:0px -2px 6px 0px rgba(197,197,197,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      .btn {
+        width: 45%;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        font-size: 18px;
+        justify-content: center;
+        border-radius: 9999999px;
+      }
+
+      .cancel {
+        @extend .btn;
+        color: #3f3f3f;
+        margin-right: 13px;
+        border: solid 1px #dfdfdf;
+      }
+
+      .confirm {
+        @extend .btn;
+        color: #fff;
+        background-color: #9273ff;
+
+        &[data-disabled="true"] {
+          opacity: 0.5;
+        }
+      }
+    }
+  }
+}
+  
+

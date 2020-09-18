@@ -21,6 +21,7 @@
   }
 }
 
+$offset: 140px;
 .modal {
   animation-iteration-count: 1;
   animation-name: show-up;
@@ -41,7 +42,7 @@
     position: absolute;
     bottom: 0;
     left: 0;
-    height: calc(100vh - 40px);
+    height: calc(100vh - $offset);
     width: 100%;
     background-color: #fff;
     border-top-left-radius: 10px;
@@ -134,11 +135,11 @@
     .main-container {
       -webkit-overflow-scrolling: auto;
       @media (orientation: landscape) {
-        height: calc(100vh - 40px - 13vh - 53px - 44px);
+        height: calc(100vh - #{$offset} - 13vh - 53px - 44px);
       }
 
       @media (orientation: portrait) {
-        height: calc(100vh - 40px - 13vw - 53px - 44px);
+        height: calc(100vh - #{$offset} - 13vw - 53px - 44px);
       }
 
       .year-month-container {

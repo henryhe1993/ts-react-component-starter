@@ -548,12 +548,10 @@ class Calendar extends React.Component<Props> {
 
 			const newDates = getPaddingDates(newYear, newMonth, this.props.maxDate);
 			const addedHeight = this.computeBlockHeight(newDates);
-
 			// IOS fix
-			// if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
-			// 	console.log('before', e.target.scrollTop)
-			// 	e.target.scrollTop = scrollTop + addedHeight;
-			// }
+			if (/iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream) {
+				e.target.scrollTop = scrollTop + addedHeight;
+			}
 				
 			this.state.showItems.unshift({
 				id: uuidv4(),
