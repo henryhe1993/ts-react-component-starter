@@ -4,6 +4,10 @@ modified from CRA
 # Development
 npm run start
 
+# index
+/src/components/index.js
+/src/@types/index.d.ts
+
 # tsx
 /src/components/[componentName]/[componentName].tsx
 
